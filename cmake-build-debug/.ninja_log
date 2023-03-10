@@ -1,0 +1,11 @@
+# ninja log v5
+36	52	1678485051423993644	assignment2	3b9a6b9fd83603ab
+1	36	1678485051407993644	CMakeFiles/assignment2.dir/InputProcess.c.o	c49685045f35630a
+1	20	1678485051391993644	CMakeFiles/assignment2.dir/gettime.c.o	65e679bef5de3ef7
+1	21	1678485051391993644	CMakeFiles/assignment2.dir/signal_catch.c.o	854a63b805472507
+0	28	1678485051399993644	CMakeFiles/assignment2.dir/main.c.o	d718b8795f60687c
+1	20	1678486420895985651	CMakeFiles/assignment2.dir/gettime.c.o	65e679bef5de3ef7
+1	21	1678486420899985651	CMakeFiles/assignment2.dir/signalcatch.c.o	5c87efd14049cccc
+0	27	1678486420903985651	CMakeFiles/assignment2.dir/main.c.o	d718b8795f60687c
+1	35	1678486420911985651	CMakeFiles/assignment2.dir/InputProcess.c.o	c49685045f35630a
+35	51	1678486420927985651	assignment2	f1256ede234d50f6
