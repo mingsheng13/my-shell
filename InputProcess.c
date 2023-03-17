@@ -53,11 +53,28 @@ char** splitInput(char* line)
 
 int execProgram(char** args)
 {
+    if (strcmp(args[0], "cd") == 0)     //check for cd command
+    {
+        char* HOME = getenv("HOME");
+        if (args[1] == NULL)
+        {
+            chdir(HOME);
+            return 0;
+        }
+
+        if (chdir(args[1]))
+        {
+            perror("MyShell: cd");
+        }
+        return 0;
+    }
+
     pid_t cid;
     cid = fork();
 
     if (cid == -1)
         perror("fork failed");
+
 
     if (cid == 0) //child process
     {

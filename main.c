@@ -9,7 +9,8 @@
 
 int main()
 {
-    signal(SIGINT, signalHandler);
+    signal(SIGINT, signalHandler);      //register signal interrupt
+
     while(1)
     {
         promptUserInput();
