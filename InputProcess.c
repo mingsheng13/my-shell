@@ -10,8 +10,10 @@
 #include <wait.h>
 #include <time.h>
 #include <ctype.h>
+#include <fcntl.h>
 #include "utils.h"
 
+int redirect(char** args);
 
 void promptUserInput()
 {
@@ -78,6 +80,14 @@ int execProgram(char** args)
 
     if (cid == 0) //child process
     {
+        int filenameIndex = redirect(args);
+//        printf("deb%d\n", filenameIndex);
+        if (filenameIndex)
+        {
+            int f = open(args[filenameIndex + 1], O_WRONLY|O_CREAT|O_TRUNC, 0666);  //TODO not working
+            dup2(f, 1);
+            exit(0);
+        }
         int i = execvp(args[0], args);
         printf("execvp failed\n");
         exit(i);
@@ -89,6 +99,19 @@ int execProgram(char** args)
     if (WIFEXITED(status))
         printf("exit status = %d\n", WEXITSTATUS(status));
     return status;
+}
+
+int redirect(char** args)
+{
+    int i = 0;
+    while (*args != NULL)
+    {
+        if (strchr(*args, '>') != NULL)
+            return i;
+        args++;
+        i++;
+    }
+    return 0;
 }
 
 char* trimWhitespace(char* input)
