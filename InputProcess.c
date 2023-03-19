@@ -22,7 +22,7 @@ void promptUserInput()
 
 char* userInput()
 {
-    size_t inputSize = 32;
+    size_t inputSize = 128;
     char* getInput = (char*)malloc(inputSize * sizeof(char));
     getline(&getInput, &inputSize, stdin);
     char* firstTrim = trimNewline(getInput);
@@ -80,15 +80,16 @@ int execProgram(char** args)
 
     if (cid == 0) //child process
     {
-        int filenameIndex = redirect(args);
-//        printf("deb%d\n", filenameIndex);
-        if (filenameIndex)
+        int redirectIndex = redirect(args);
+        if (redirectIndex)
         {
-            int f = open(args[filenameIndex + 1], O_WRONLY|O_CREAT|O_TRUNC, 0666);  //TODO not working
-            dup2(f, 1);
-            exit(0);
+            int f = open(args[redirectIndex + 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
+            dup2(f, 1);     //redirect output
+            args[redirectIndex] = NULL;     //ignore arguments after >
         }
+
         int i = execvp(args[0], args);
+        dup2(STDIN_FILENO, 1);  //redirect output to stdout
         printf("execvp failed\n");
         exit(i);
     }
@@ -136,7 +137,7 @@ char* trimWhitespace(char* input)
 
 char* trimNewline(char* input)
 {
-    char *trimmed = (char*)malloc(sizeof(char));
+    char *trimmed = (char*)malloc(128 * sizeof(char));
     strcpy(trimmed, input);
     size_t index = strcspn(input, "\n");
     trimmed[index] = 0;
