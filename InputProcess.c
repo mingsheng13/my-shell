@@ -1,6 +1,3 @@
-//
-// Created by cms on 3/9/23.
-//
 
 #include <stdio.h>
 #include <unistd.h>
@@ -75,7 +72,7 @@ int execProgram(char** args)
     cid = fork();
 
     if (cid == -1)
-        perror("fork failed");
+        perror("fork");
 
 
     if (cid == 0) //child process
@@ -90,15 +87,14 @@ int execProgram(char** args)
 
         int i = execvp(args[0], args);
         dup2(STDIN_FILENO, 1);  //redirect output to stdout
-        printf("execvp failed\n");
+        perror("execvp");
         exit(i);
     }
     //parent
-    signal(SIGINT, SIG_IGN); //catch ctrl c
     int status = 0;
     wait(&status);
-    if (WIFEXITED(status))
-        printf("exit status = %d\n", WEXITSTATUS(status));
+//    if (WIFEXITED(status))
+//        printf("exit status = %d\n", WEXITSTATUS(status));
     return status;
 }
 

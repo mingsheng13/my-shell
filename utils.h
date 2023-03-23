@@ -1,11 +1,5 @@
-//
-// Created by cms on 3/9/23.
-//
+#pragma once
 
-#ifndef ASSIGNMENT2_UTILS_H
-#define ASSIGNMENT2_UTILS_H
-
-#endif //ASSIGNMENT2_UTILS_H
 void promptUserInput();
 
 char* timestamp();

@@ -1,6 +1,4 @@
-//
-// Created by cms on 3/9/23.
-//
+
 #include <bits/types/time_t.h>
 #include <malloc.h>
 #include <time.h>
