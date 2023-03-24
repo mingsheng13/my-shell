@@ -10,6 +10,7 @@ int main()
 {
     signal(SIGINT, signalHandler);      //register signal interrupt
 
+
     while(1)
     {
         promptUserInput();
@@ -18,6 +19,9 @@ int main()
 
         if(args == NULL) //newline entered
             continue;
+
+        if(strcmp(args[0], "exit") == 0)    //exit shell
+            break;
 
         execProgram(args);
     }

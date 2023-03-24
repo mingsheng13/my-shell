@@ -38,7 +38,7 @@ char** splitInput(char* line)
 
     char *token = strtok(line, delimiter);
 
-    //allocating mem
+    //allocating memory
     char **tokens = (char**)malloc(size * sizeof(char*));
 
     while(token != NULL)
@@ -54,19 +54,23 @@ int execProgram(char** args)
 {
     if (strcmp(args[0], "cd") == 0)     //check for cd command
     {
-        char* HOME = getenv("HOME");
-        if (args[1] == NULL)
+        char* HOME = getenv("HOME");    //get home path
+        if (args[1] == NULL)    //if no argument given
         {
-            chdir(HOME);
+            chdir(HOME);    //cd to home path
             return 0;
         }
 
-        if (chdir(args[1]))
+        if (chdir(args[1]))     //cd to args[1] given. if non zero return, error occurred.
         {
             perror("MyShell: cd");
         }
         return 0;
     }
+
+    /*
+     * not cd command
+     */
 
     pid_t cid;
     cid = fork();
@@ -77,7 +81,7 @@ int execProgram(char** args)
 
     if (cid == 0) //child process
     {
-        int redirectIndex = redirect(args);
+        int redirectIndex = redirect(args);     //check if command contains redirection
         if (redirectIndex)
         {
             int f = open(args[redirectIndex + 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
@@ -98,7 +102,7 @@ int execProgram(char** args)
     return status;
 }
 
-int redirect(char** args)
+int redirect(char** args)   //return the position of '>'
 {
     int i = 0;
     while (*args != NULL)
