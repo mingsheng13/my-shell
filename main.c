@@ -1,6 +1,10 @@
-#include <stdio.h>
+/*
+ * Name: Ming Sheng Chai
+ * Student Number: 21203216
+ * Email: ming.chai@ucdconnect.ie
+ * */
+
 #include <string.h>
-#include <unistd.h>
 #include <signal.h>
 #include "utils.h"
 
@@ -9,7 +13,6 @@
 int main()
 {
     signal(SIGINT, signalHandler);      //register signal interrupt
-
 
     while(1)
     {

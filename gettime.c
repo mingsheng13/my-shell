@@ -1,3 +1,8 @@
+/*
+ * Name: Ming Sheng Chai
+ * Student Number: 21203216
+ * Email: ming.chai@ucdconnect.ie
+ * */
 
 #include <bits/types/time_t.h>
 #include <malloc.h>

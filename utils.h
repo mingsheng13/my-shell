@@ -1,3 +1,10 @@
+/*
+ * Name: Ming Sheng Chai
+ * Student Number: 21203216
+ * Email: ming.chai@ucdconnect.ie
+ * */
+
+
 #pragma once
 
 void promptUserInput();

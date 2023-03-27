@@ -1,11 +1,15 @@
+/*
+ * Name: Ming Sheng Chai
+ * Student Number: 21203216
+ * Email: ming.chai@ucdconnect.ie
+ * */
+
 
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-#include <malloc.h>
 #include <stdlib.h>
 #include <wait.h>
-#include <time.h>
 #include <ctype.h>
 #include <fcntl.h>
 #include "utils.h"
@@ -21,7 +25,8 @@ char* userInput()
 {
     size_t inputSize = 128;
     char* getInput = (char*)malloc(inputSize * sizeof(char));
-    getline(&getInput, &inputSize, stdin);
+    if (getline(&getInput, &inputSize, stdin) == -1)    //reads an EOF
+        exit(0);
     char* firstTrim = trimNewline(getInput);
     char* secondTrim = trimWhitespace(firstTrim);
     return secondTrim;
